@@ -1,0 +1,85 @@
+.navbar {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-left span {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Date Picker Container */
+.date-picker-container {
+  position: relative;
+}
+
+.current-date {
+  font-size: 1rem;
+  color: #2c3e50;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  background-color: #ecf0f1;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* User Profile Dropdown */
+.user-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.dropdown-icon {
+  font-size: 0.8rem;
+  color: #2c3e50;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 10px;
+  color: #2c3e50;
+}
+
+.dropdown-item:hover {
+  background-color: #ecf0f1;
+}
