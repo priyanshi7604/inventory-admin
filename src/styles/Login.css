@@ -1,0 +1,147 @@
+/* Login Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa; /* Light gray background */
+}
+
+.login-box {
+  display: flex;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 1000px;
+  width: 90%;
+  margin: 20px;
+}
+
+.login-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5; /* Light background for image */
+}
+
+.login-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.login-form {
+  flex: 1;
+  padding: 50px;
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.login-form .subtitle {
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 16px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #007bff; /* Blue border on focus */
+}
+
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 18px;
+}
+
+.toggle-password:hover {
+  color: #007bff; /* Blue on hover */
+}
+
+.terms-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.terms-group input {
+  margin-right: 10px;
+}
+
+.terms-group label {
+  font-size: 14px;
+  color: #666;
+}
+
+.error-message {
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+.navigation-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.navigation-link a {
+  color: #007bff; /* Blue link */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navigation-link a:hover {
+  text-decoration: underline;
+}

@@ -1,24 +1,45 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
 import Customers from "./components/Customers";
-import "./App.css";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import "./styles/App.css";
 
 function App() {
   return (
     <Router>
-      <div className="app">
-        <Sidebar />
-        <div className="main-content">
-          <Navbar />
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/customers" element={<Customers />} />
-          </Routes>
-        </div>
-      </div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/dashboard"
+          element={
+            <div className="app">
+              <Sidebar />
+              <div className="main-content">
+                <Navbar />
+                <Dashboard />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/customers"
+          element={
+            <div className="app">
+              <Sidebar />
+              <div className="main-content">
+                <Navbar />
+                <Customers />
+              </div>
+            </div>
+          }
+        />
+        <Route path="/" element={<Login />} /> {/* Default route */}
+      </Routes>
     </Router>
   );
 }
