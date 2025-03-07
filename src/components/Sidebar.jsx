@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaUsers, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 import LogoutModal from "./LogoutModal";
 import logo from "../assets/StockNest.jpg";
 import "../styles/Sidebar.css";
@@ -12,7 +13,7 @@ const Sidebar = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogout = () => {
-    alert("Logout successful!");
+    toast.success("Logged out successfully!");
     navigate("/login");
   };
 

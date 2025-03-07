@@ -36,25 +36,25 @@ const Customers = () => {
         fetchCustomers();
     }, []);
 
-    // Delete customer (for frontend only)
+    // Delete customer
     const handleDelete = async (id) => {
         try {
             await axios.delete(`${URL}/${id}`, config);
             toast.success("User deleted successfully!");
             fetchCustomers();
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Failed to delete user!");
         }
     };
 
-    // Activate user
+   // Activate user
     const handleActivate = async (id) => {
         try {
             await axios.put(`${URL}/activate/${id}`, config);
+            toast.success("User activated successfully!");
             fetchCustomers();
-            toast.success("Item deleted successfully!");
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Failed to activate user!");
         }
     };
 
@@ -62,11 +62,10 @@ const Customers = () => {
     const handleDeactivate = async (id) => {
         try {
             await axios.put(`${URL}/deactivate/${id}`, config);
+            toast.success("User deactivated successfully!");
             fetchCustomers();
-            toast.success("Item deleted successfully!");
         } catch (error) {
-            console.log("error.response.data.message::: ", error.response.data.message);
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Failed to deactivate user!");
         }
     };
 

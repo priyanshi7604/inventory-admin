@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
+import { toast } from "react-toastify";
 import LogoutModal from "./LogoutModal";
 import "../styles/Navbar.css";
 
@@ -10,7 +11,7 @@ const Navbar = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogout = () => {
-    alert("Logout successful!");
+    toast.success("Logged out successfully!");
     navigate("/login");
   };
 
