@@ -6,133 +6,132 @@ import { Url, config } from "../Url";
 import { toast } from "react-toastify";
 
 const Customers = () => {
-  const [customers, setCustomers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState("all");
+    const [customers, setCustomers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filterStatus, setFilterStatus] = useState("all");
 
-  const URL = Url + "/user";
+    const URL = Url + "/user";
 
     // Fetch customers from API
-    useEffect(() => {
-        const fetchCustomers = async () => {
-            try {
-                const response = await axios.get(`${URL}/data`);
-                if (response.data.success) {
-                    const formattedCustomers = response.data.payload.map((user) => ({
-                        id: user._id,
-                        name: user.username,
-                        email: user.email,
-                        purchaseBills: user.purchaseBillCount,
-                        saleBills: user.saleBillCount,
-                        status: user.isActive ? "active" : "inactive",
-                    }));
-                    setCustomers(formattedCustomers);
-                }
-            } catch (error) {
-                console.error("Error fetching customer data:", error);
+    const fetchCustomers = async () => {
+        try {
+            const response = await axios.get(`${URL}/data`);
+            if (response.data.success) {
+                const formattedCustomers = response.data.payload.map((user) => ({
+                    id: user._id,
+                    name: user.username,
+                    email: user.email,
+                    purchaseBills: user.purchaseBillCount,
+                    saleBills: user.saleBillCount,
+                    status: user.isActive ? "active" : "inactive",
+                }));
+                setCustomers(formattedCustomers);
             }
-        };
+        } catch (error) {
+            console.error("Error fetching customer data:", error);
+        }
+    };
 
+    useEffect(() => {
         fetchCustomers();
     }, []);
 
     // Delete customer (for frontend only)
-    const handleDelete = (id) => {
-        setCustomers(customers.filter((customer) => customer.id !== id));
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`${URL}/${id}`, config);
+            toast.success("User deleted successfully!");
+            fetchCustomers();
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
     };
 
     // Activate user
-    const handleActivate = (id) => {
-        setCustomers(customers.map((customer) => (customer.id === id ? { ...customer, status: "active" } : customer)));
+    const handleActivate = async (id) => {
+        try {
+            await axios.put(`${URL}/activate/${id}`, config);
+            fetchCustomers();
+            toast.success("Item deleted successfully!");
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
     };
 
     // Deactivate user
-    const handleDeactivate = (id) => {
-        setCustomers(customers.map((customer) => (customer.id === id ? { ...customer, status: "inactive" } : customer)));
+    const handleDeactivate = async (id) => {
+        try {
+            await axios.put(`${URL}/deactivate/${id}`, config);
+            fetchCustomers();
+            toast.success("Item deleted successfully!");
+        } catch (error) {
+            console.log("error.response.data.message::: ", error.response.data.message);
+            toast.error(error.response.data.message);
+        }
     };
 
-  // Filter customers by search term and status
-  const filteredCustomers = customers.filter((customer) => {
-    const matchesSearch = customer.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesFilter =
-      filterStatus === "all" || customer.status === filterStatus;
-    return matchesSearch && matchesFilter;
-  });
+    // Filter customers by search term and status
+    const filteredCustomers = customers.filter((customer) => {
+        const matchesSearch = customer.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesFilter = filterStatus === "all" || customer.status === filterStatus;
+        return matchesSearch && matchesFilter;
+    });
 
-  return (
-    <div className="customers">
-      <h1>Customers</h1>
+    return (
+        <div className="customers">
+            <h1>Customers</h1>
 
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search by name..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
+            <div className="search-bar">
+                <input type="text" placeholder="Search by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            </div>
 
-      <div className="filters">
-        <label>
-          Filter by Status:
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </label>
-      </div>
+            <div className="filters">
+                <label>
+                    Filter by Status:
+                    <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </label>
+            </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Purchase Bills</th>
-            <th>Sale Bills</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredCustomers.map((customer) => (
-            <tr key={customer.id}>
-              <td>{customer.name}</td>
-              <td>{customer.email}</td>
-              <td>{customer.purchaseBills}</td>
-              <td>{customer.saleBills}</td>
-              <td>{customer.status}</td>
-              <td className="action-btns">
-                <button
-                  className="action-btn delete"
-                  onClick={() => handleDelete(customer.id)}
-                >
-                  <FaTrash />
-                </button>
-                <button
-                  className="action-btn activate"
-                  onClick={() => handleActivate(customer.id)}
-                >
-                  <FaCheck />
-                </button>
-                <button
-                  className="action-btn deactivate"
-                  onClick={() => handleDeactivate(customer.id)}
-                >
-                  <FaTimes />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Purchase Bills</th>
+                        <th>Sale Bills</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredCustomers.map((customer) => (
+                        <tr key={customer.id}>
+                            <td>{customer.name}</td>
+                            <td>{customer.email}</td>
+                            <td>{customer.purchaseBills}</td>
+                            <td>{customer.saleBills}</td>
+                            <td>{customer.status}</td>
+                            <td>
+                                <button className="action-btn delete" onClick={() => handleDelete(customer.id)}>
+                                    <FaTrash />
+                                </button>
+                                <button className="action-btn activate" onClick={() => handleActivate(customer.id)}>
+                                    <FaCheck />
+                                </button>
+                                <button className="action-btn deactivate" onClick={() => handleDeactivate(customer.id)}>
+                                    <FaTimes />
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 };
 
 export default Customers;
