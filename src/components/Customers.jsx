@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaTrash, FaCheck, FaTimes } from "react-icons/fa";
 import "../styles/Customers.css";
-import { Url } from "../Url";
+import { Url, config } from "../Url";
+import { toast } from "react-toastify";
 
 const Customers = () => {
     const [customers, setCustomers] = useState([]);
@@ -12,42 +13,61 @@ const Customers = () => {
     const URL = Url + "/user";
 
     // Fetch customers from API
-    useEffect(() => {
-        const fetchCustomers = async () => {
-            try {
-                const response = await axios.get(`${URL}/data`);
-                if (response.data.success) {
-                    const formattedCustomers = response.data.payload.map((user) => ({
-                        id: user._id,
-                        name: user.username,
-                        email: user.email,
-                        purchaseBills: user.purchaseBillCount,
-                        saleBills: user.saleBillCount,
-                        status: user.isActive ? "active" : "inactive",
-                    }));
-                    setCustomers(formattedCustomers);
-                }
-            } catch (error) {
-                console.error("Error fetching customer data:", error);
+    const fetchCustomers = async () => {
+        try {
+            const response = await axios.get(`${URL}/data`);
+            if (response.data.success) {
+                const formattedCustomers = response.data.payload.map((user) => ({
+                    id: user._id,
+                    name: user.username,
+                    email: user.email,
+                    purchaseBills: user.purchaseBillCount,
+                    saleBills: user.saleBillCount,
+                    status: user.isActive ? "active" : "inactive",
+                }));
+                setCustomers(formattedCustomers);
             }
-        };
+        } catch (error) {
+            console.error("Error fetching customer data:", error);
+        }
+    };
 
+    useEffect(() => {
         fetchCustomers();
     }, []);
 
     // Delete customer (for frontend only)
-    const handleDelete = (id) => {
-        setCustomers(customers.filter((customer) => customer.id !== id));
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`${URL}/${id}`, config);
+            toast.success("User deleted successfully!");
+            fetchCustomers();
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
     };
 
     // Activate user
-    const handleActivate = (id) => {
-        setCustomers(customers.map((customer) => (customer.id === id ? { ...customer, status: "active" } : customer)));
+    const handleActivate = async (id) => {
+        try {
+            await axios.put(`${URL}/activate/${id}`, config);
+            fetchCustomers();
+            toast.success("Item deleted successfully!");
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
     };
 
     // Deactivate user
-    const handleDeactivate = (id) => {
-        setCustomers(customers.map((customer) => (customer.id === id ? { ...customer, status: "inactive" } : customer)));
+    const handleDeactivate = async (id) => {
+        try {
+            await axios.put(`${URL}/deactivate/${id}`, config);
+            fetchCustomers();
+            toast.success("Item deleted successfully!");
+        } catch (error) {
+          console.log('error.response.data.message::: ', error.response.data.message);
+            toast.error(error.response.data.message);
+        }
     };
 
     // Filter customers by search term and status
