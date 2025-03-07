@@ -115,15 +115,15 @@ const Customers = () => {
                             <td>{customer.purchaseBills}</td>
                             <td>{customer.saleBills}</td>
                             <td>{customer.status}</td>
-                            <td>
-                                <button className="action-btn delete" onClick={() => handleDelete(customer.id)}>
-                                    <FaTrash />
-                                </button>
+                            <td style={{ display: "flex" }}>
                                 <button className="action-btn activate" onClick={() => handleActivate(customer.id)}>
                                     <FaCheck />
                                 </button>
                                 <button className="action-btn deactivate" onClick={() => handleDeactivate(customer.id)}>
                                     <FaTimes />
+                                </button>
+                                <button className="action-btn delete" onClick={() => handleDelete(customer.id)}>
+                                    <FaTrash />
                                 </button>
                             </td>
                         </tr>
