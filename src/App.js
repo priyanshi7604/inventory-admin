@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/Login";
@@ -23,10 +23,38 @@ const Layout = ({ children }) => {
     );
 };
 
+// Component to update tab title based on the current route
+const TabTitleUpdater = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        // Set the tab title based on the current route
+        switch (location.pathname) {
+            case "/dashboard":
+                document.title = "📊 Dashboard | Admin Panel";
+                break;
+            case "/customers":
+                document.title = "👥 Customers | Admin Panel";
+                break;
+            case "/login":
+                document.title = "🔐 Login | Admin Panel";
+                break;
+            case "/signup":
+                document.title = "📝 Signup | Admin Panel";
+                break;
+            default:
+                document.title = "Admin Panel";
+                break;
+        }
+    }, [location.pathname]); // Update title whenever the path changes
+
+    return null; // This component doesn't render anything
+};
+
 function App() {
     return (
         <Router>
-             {/* Toast Container for Notifications */}
+            {/* Toast Container for Notifications */}
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
@@ -47,6 +75,9 @@ function App() {
                     </button>
                 )}
             />
+
+            {/* Tab Title Updater */}
+            <TabTitleUpdater />
 
             <Routes>
                 {/* Public Routes */}
