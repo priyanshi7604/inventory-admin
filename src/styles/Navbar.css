@@ -1,12 +1,20 @@
+/* Navbar Container */
 .navbar {
-  background-color: #ffffff;
+  background: linear-gradient(145deg, #ffffff, #f9fafb); /* Light gradient */
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+  position: fixed;
+  top: 0;
+  left: 280px; /* Adjusted for sidebar width */
+  right: 0;
+  z-index: 999;
 }
 
+/* Navbar Left Section */
 .navbar-left {
   display: flex;
   align-items: center;
@@ -16,8 +24,10 @@
 .navbar-left span {
   font-size: 1rem;
   color: #2c3e50;
+  opacity: 0.8;
 }
 
+/* Navbar Center Section */
 .navbar-center {
   flex: 1;
   display: flex;
@@ -35,9 +45,15 @@
   padding: 8px 16px;
   border-radius: 4px;
   transition: background-color 0.3s;
-  background-color: #ecf0f1;
+  background: rgba(59, 130, 246, 0.1); /* Light blue background */
+  cursor: pointer;
 }
 
+.current-date:hover {
+  background: rgba(59, 130, 246, 0.2); /* Light blue hover */
+}
+
+/* Navbar Right Section */
 .navbar-right {
   display: flex;
   align-items: center;
@@ -56,32 +72,47 @@
 .profile-icon {
   font-size: 1.5rem;
   color: #2c3e50;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.profile-icon:hover {
+  opacity: 1;
 }
 
 .dropdown-icon {
   font-size: 0.8rem;
   color: #2c3e50;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.dropdown-icon:hover {
+  opacity: 1;
 }
 
 .profile-dropdown {
   position: absolute;
   top: 40px;
   right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 150px;
+  background: #ffffff; /* Light background */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 180px;
   z-index: 1000;
+  overflow: hidden;
 }
 
 .dropdown-item {
-  padding: 10px;
+  padding: 12px;
   color: #2c3e50;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
 }
 
 .dropdown-item:hover {
-  background-color: #ecf0f1;
+  background: rgba(59, 130, 246, 0.1); /* Light blue hover */
 }
 
 /* Logout Modal Styles */
@@ -100,48 +131,54 @@
 
 .logout-modal {
   background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
+  max-width: 400px;
+  width: 90%;
 }
 
 .logout-modal h3 {
   margin-bottom: 20px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #2c3e50;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .modal-buttons button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .modal-buttons .confirm-btn {
-  background-color: #e74c3c;
+  background: linear-gradient(145deg, #ef4444, #dc2626); /* Red gradient */
   color: #ffffff;
 }
 
 .modal-buttons .confirm-btn:hover {
-  background-color: #c0392b;
+  background: linear-gradient(145deg, #dc2626, #ef4444);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-buttons .cancel-btn {
-  background-color: #bdc3c7;
-  color: #2c3e50;
+  background: linear-gradient(145deg, #64748b, #475569); /* Gray gradient */
+  color: #ffffff;
 }
 
 .modal-buttons .cancel-btn:hover {
-  background-color: #95a5a6;
+  background: linear-gradient(145deg, #475569, #64748b);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
