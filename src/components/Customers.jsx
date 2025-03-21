@@ -41,7 +41,7 @@ const Customers = () => {
     // Delete customer
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${URL}/${id}`, config);
+            await axios.delete(`${URL}/delete/${id}`, config);
             toast.success("User deleted successfully!");
             fetchCustomers();
         } catch (error) {
@@ -83,12 +83,7 @@ const Customers = () => {
             <h1>Customers</h1>
 
             <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search by name..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <input type="text" placeholder="Search by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
 
             <div className="filters">
