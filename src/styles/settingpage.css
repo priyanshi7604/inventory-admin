@@ -1,0 +1,310 @@
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Picture Section */
+.profile-section {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.profile-picture-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+}
+
+.edit-icon-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-icon-button:hover {
+    background-color: #0056b3;
+}
+
+/* Personal Info Section */
+.personal-info-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #181717;
+    font-weight: 600;
+}
+
+.edit-mode-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.edit-mode-button:hover {
+    background-color: #0056b3;
+}
+
+.edit-mode-button.cancel-button {
+    background-color: #dc3545;
+}
+
+.edit-mode-button.cancel-button:hover {
+    background-color: #c82333;
+}
+
+/* Info Fields */
+.info-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.info-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-field label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.info-field input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+}
+
+.info-field input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.info-field p {
+    margin: 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+/* Save Button */
+.save-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.save-icon-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.save-icon-button:hover {
+    background-color: #218838;
+}
+
+/* Login & Security Section */
+.login-security-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.password-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.password-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settings-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+}
+
+.settings-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.settings-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.settings-button:hover {
+    background-color: #0056b3;
+}
+
+/* Delete Account Section */
+.delete-account-section {
+    background-color: #fda4a4;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.delete-warning {
+    margin-bottom: 16px;
+}
+
+.delete-warning p {
+    margin: 0 0 12px 0;
+    font-size: 1.0rem;
+    color: #ffffff;
+}
+
+.delete-warning ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 1.0rem;
+    color: #ffffff;
+}
+
+.delete-account-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.delete-account-button:hover {
+    background-color: #c82333;
+}
+
+/* Delete Confirmation Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button.confirm-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal-button.confirm-button:hover {
+    background-color: #c82333;
+}
+
+.modal-button.cancel-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+.modal-button.cancel-button:hover {
+    background-color: #5a6268;
+}
