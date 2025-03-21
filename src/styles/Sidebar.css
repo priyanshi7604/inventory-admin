@@ -212,3 +212,18 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Ensure buttons do not stretch */
+.settings-button,
+.edit-mode-button,
+.save-icon-button,
+.delete-account-button,
+.modal-button {
+    width: auto; /* Allow buttons to size based on content */
+    min-width: 100px; /* Set a minimum width */
+    white-space: nowrap; /* Prevent text from wrapping */
+    display: inline-flex; /* Use inline-flex for better alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+}
