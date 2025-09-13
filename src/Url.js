@@ -1,4 +1,22 @@
-const Url = "http://localhost:5500/api";
+// const Url = "http://localhost:5500/api";
+
+// let token = localStorage.getItem("token");
+
+// const headers = {
+//     "ngrok-skip-browser-warning": true,
+//     "Content-Type": "application/json;charset=UTF-8",
+//     "Access-Control-Allow-Origin": "*",
+//     token: token,
+// };
+
+// const config = {
+//     headers: headers,
+// };
+// export { Url, config };
+
+// src/Url.js (ya jahan bhi file hai)
+
+const Url = "http://localhost:3000/api";
 
 let token = localStorage.getItem("token");
 
@@ -6,10 +24,11 @@ const headers = {
     "ngrok-skip-browser-warning": true,
     "Content-Type": "application/json;charset=UTF-8",
     "Access-Control-Allow-Origin": "*",
-    token: token,
+    token: token ? token : "",
 };
 
 const config = {
     headers: headers,
 };
+
 export { Url, config };
